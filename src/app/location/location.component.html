@@ -1,0 +1,66 @@
+      <div class="row" *ngIf="locationList">
+        <div class="col-md-3 ">
+          <nb-card size="medium">
+            <nb-card-header>
+              Locations
+            </nb-card-header>
+            <nb-list>
+              <nb-list-item *ngFor="let location of locationList" (click)="showDetail(location)">
+                {{ location.name }}
+              </nb-list-item>
+            </nb-list>
+          </nb-card>
+        </div>
+        <div class="col-md-9" *ngIf="selectedLocation">
+          <nb-card>
+            <nb-card-header>
+              {{selectedLocation.name}}
+            </nb-card-header>
+            <nb-card-body>
+              <p>Location BoID : {{selectedLocation.boId}}</p>
+              <p>Location Name : {{selectedLocation.name}}</p>
+            </nb-card-body>
+          </nb-card>
+
+          <nb-card>
+            <nb-card-header>
+              Department List
+            </nb-card-header>
+            <nb-card-body>
+              <ul>
+                  <li *ngFor="let department of selectedLocation.departmentList" (click)="showDepartment(department)">
+                    {{department.boId}}, {{department.name}}
+                  </li>
+              </ul>
+            </nb-card-body>
+          </nb-card>
+
+          <nb-card *ngIf="selectedDepartment">
+            <nb-card-header>
+              {{selectedDepartment.name}}
+            </nb-card-header>
+            <nb-card-body>
+              <p>Department BoID : {{selectedDepartment.boId}}</p>
+              <p>Department Name : {{selectedDepartment.name}}</p>
+
+              
+            </nb-card-body>
+          </nb-card>
+
+          <span *ngIf="selectedDepartment">
+              <nb-card *ngIf="selectedDepartment.jobList">
+                  <nb-card-header>
+                    Job List
+                  </nb-card-header>
+                  <nb-card-body>
+                    <ul>
+                        <li *ngFor="let job of selectedDepartment.jobList">
+                          {{job.boId}}, {{job.jobTitle}} - {{job.salary}}
+                        </li>
+                    </ul>
+                  </nb-card-body>
+                </nb-card>  
+          </span>
+                  
+        </div>
+      </div>

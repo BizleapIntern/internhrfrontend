@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NbSidebarService } from '@nebular/theme';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,24 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'internhrfrontend';
+  items = [
+    {
+      title: 'Location',
+      icon: 'home-outline',
+      link: ['/location'],
+    },
+    {
+      title: 'Employee',
+      icon: 'person-outline',
+      link: ['/employee'],
+    }
+  ];
+
+  constructor(private sidebarService: NbSidebarService) {
+
+  }
+
+  toggleSidebar() {
+    this.sidebarService.toggle(true, 'menu-sidebar')
+  }
 }
